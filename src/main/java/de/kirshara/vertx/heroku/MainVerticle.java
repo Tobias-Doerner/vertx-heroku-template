@@ -21,12 +21,12 @@ public class MainVerticle extends AbstractVerticle {
             .setOptional(true)
             .setConfig(new JsonObject().put("path", "config.json"));
 
-        // Reading the Config Vars which are defined in the settings of the application on Heroku
+        // Reading the environment variables
         final ConfigStoreOptions configStoreSysOptions = new ConfigStoreOptions()
             .setType("sys")
             .setOptional(true);
 
-        // Reading the environment variables
+        // Reading the Config Vars which are defined in the settings of the application on Heroku
         final ConfigStoreOptions configStoreEnvOptions = new ConfigStoreOptions()
             .setType("env")
             .setOptional(true);
