@@ -1,7 +1,7 @@
 package de.kirshara.vertx.heroku;
 
 import io.vertx.core.AbstractVerticle;
-import io.vertx.core.Future;
+import io.vertx.core.Promise;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.http.HttpServerOptions;
 import io.vertx.ext.web.Router;
@@ -11,7 +11,7 @@ public class HttpServerVerticle extends AbstractVerticle {
     private HttpServer server;
 
     @Override
-    public void start(Future<Void> startFuture) throws Exception {
+    public void start(Promise<Void> startPromise) {
         final Router router = Router.router(vertx);
         router.route().handler(ctx ->
             ctx
@@ -29,20 +29,20 @@ public class HttpServerVerticle extends AbstractVerticle {
 
         server.requestHandler(router).listen(ar -> {
             if (ar.succeeded()) {
-                startFuture.complete();
+                startPromise.complete();
             } else {
-                startFuture.fail(ar.cause());
+                startPromise.fail(ar.cause());
             }
         });
     }
 
     @Override
-    public void stop(Future<Void> stopFuture) throws Exception {
+    public void stop(Promise<Void> stopPromise) {
         server.close(ar -> {
             if (ar.succeeded()) {
-                stopFuture.complete();
+                stopPromise.complete();
             } else {
-                stopFuture.fail(ar.cause());
+                stopPromise.fail(ar.cause());
             }
         });
     }

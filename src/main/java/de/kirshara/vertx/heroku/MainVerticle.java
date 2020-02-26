@@ -5,7 +5,7 @@ import io.vertx.config.ConfigRetrieverOptions;
 import io.vertx.config.ConfigStoreOptions;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.DeploymentOptions;
-import io.vertx.core.Future;
+import io.vertx.core.Promise;
 import io.vertx.core.json.JsonObject;
 
 public class MainVerticle extends AbstractVerticle {
@@ -14,7 +14,7 @@ public class MainVerticle extends AbstractVerticle {
     private JsonObject config;
 
     @Override
-    public void start(Future<Void> startFuture) {
+    public void start(Promise<Void> startPromise) {
         // Reading config params from resoucres/config.json file
         final ConfigStoreOptions configStoreFileOptions = new ConfigStoreOptions()
             .setType("file")
@@ -46,13 +46,13 @@ public class MainVerticle extends AbstractVerticle {
                     HttpServerVerticle::new,
                     new DeploymentOptions().setConfig(config), ar -> {
                         if (ar.succeeded()) {
-                            startFuture.complete();
+                            startPromise.complete();
                         } else {
-                            startFuture.fail(ar.cause());
+                            startPromise.fail(ar.cause());
                         }
                     });
             } else {
-                startFuture.fail(json.cause());
+                startPromise.fail(json.cause());
             }
         });
     }
