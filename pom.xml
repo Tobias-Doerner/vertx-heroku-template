@@ -9,12 +9,12 @@
     <version>0.0.1</version>
 
     <properties>
-        <assertj-core.version>3.12.2</assertj-core.version>
-        <junit-jupiter.version>5.4.2</junit-jupiter.version>
+        <assertj-core.version>3.15.0</assertj-core.version>
+        <junit-jupiter.version>5.6.0</junit-jupiter.version>
         <main.verticle>de.kirshara.vertx.heroku.MainVerticle</main.verticle>
-        <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <vertx.version>3.7.0</vertx.version>
+        <vertx.version>3.8.5</vertx.version>
     </properties>
 
     <dependencies>
@@ -77,11 +77,11 @@
             <plugins>
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.0</version>
+                    <version>3.8.1</version>
                     <configuration>
-                        <source>10</source>
-                        <target>10</target>
-                        <release>10</release>
+                        <source>11</source>
+                        <target>11</target>
+                        <release>11</release>
                     </configuration>
                 </plugin>
             </plugins>
@@ -96,7 +96,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.1</version>
+                <version>3.2.2</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -129,14 +129,14 @@
             <plugin>
                 <groupId>com.heroku.sdk</groupId>
                 <artifactId>heroku-maven-plugin</artifactId>
-                <version>2.0.8</version>
+                <version>2.0.16</version>
                 <configuration>
                     <appName></appName>
                     <processTypes>
                         <web>java $JAVA_OPTS -Dhttp.port=$PORT -jar target/${project.artifactId}-${project.version}-fat.jar
                         </web>
                     </processTypes>
-                    <jdkVersion>10</jdkVersion>
+                    <jdkVersion>11</jdkVersion>
                 </configuration>
             </plugin>
         </plugins>
