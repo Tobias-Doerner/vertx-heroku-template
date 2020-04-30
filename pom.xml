@@ -10,11 +10,11 @@
 
     <properties>
         <assertj-core.version>3.15.0</assertj-core.version>
-        <junit-jupiter.version>5.6.0</junit-jupiter.version>
+        <junit-jupiter.version>5.6.2</junit-jupiter.version>
         <main.verticle>de.kirshara.vertx.heroku.MainVerticle</main.verticle>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <vertx.version>3.8.5</vertx.version>
+        <vertx.version>3.9.0</vertx.version>
     </properties>
 
     <dependencies>
@@ -129,7 +129,7 @@
             <plugin>
                 <groupId>com.heroku.sdk</groupId>
                 <artifactId>heroku-maven-plugin</artifactId>
-                <version>2.0.16</version>
+                <version>3.0.2</version>
                 <configuration>
                     <appName></appName>
                     <processTypes>
