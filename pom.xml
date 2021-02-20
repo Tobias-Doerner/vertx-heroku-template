@@ -9,12 +9,12 @@
     <version>0.0.1</version>
 
     <properties>
-        <assertj-core.version>3.15.0</assertj-core.version>
-        <junit-jupiter.version>5.6.2</junit-jupiter.version>
+        <assertj-core.version>3.19.0</assertj-core.version>
+        <junit-jupiter.version>5.7.1</junit-jupiter.version>
         <main.verticle>de.kirshara.vertx.heroku.MainVerticle</main.verticle>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <vertx.version>3.9.0</vertx.version>
+        <vertx.version>4.0.2</vertx.version>
     </properties>
 
     <dependencies>
@@ -95,9 +95,9 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.8.1</version>
                     <configuration>
-                        <source>11</source>
-                        <target>11</target>
-                        <release>11</release>
+                        <source>15</source>
+                        <target>15</target>
+                        <release>15</release>
                     </configuration>
                 </plugin>
             </plugins>
@@ -112,7 +112,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.3</version>
+                <version>3.2.4</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -145,14 +145,14 @@
             <plugin>
                 <groupId>com.heroku.sdk</groupId>
                 <artifactId>heroku-maven-plugin</artifactId>
-                <version>3.0.2</version>
+                <version>3.0.4</version>
                 <configuration>
                     <appName></appName>
                     <processTypes>
                         <web>java $JAVA_OPTS -Dhttp.port=$PORT -jar target/${project.artifactId}-${project.version}-fat.jar
                         </web>
                     </processTypes>
-                    <jdkVersion>11</jdkVersion>
+                    <jdkVersion>15</jdkVersion>
                 </configuration>
             </plugin>
         </plugins>

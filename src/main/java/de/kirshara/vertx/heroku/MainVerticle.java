@@ -12,21 +12,17 @@ public class MainVerticle extends AbstractVerticle {
     @Override
     public void start(Promise<Void> startPromise) {
         configManager = ConfigManager.getDefaultConfigManager(vertx);
-        configManager.getConfig().setHandler(json -> {
-            if (json.succeeded()) {
-                vertx.deployVerticle(
-                    HttpServerVerticle::new,
-                    new DeploymentOptions().setConfig(json.result()), ar -> {
-                        if (ar.succeeded()) {
-                            startPromise.complete();
-                        } else {
-                            startPromise.fail(ar.cause());
-                        }
-                    });
-            } else {
-                startPromise.fail(json.cause());
-            }
-        });
+        configManager.getConfig()
+            .onSuccess(json -> vertx.deployVerticle(
+                HttpServerVerticle::new,
+                new DeploymentOptions().setConfig(json), ar -> {
+                    if (ar.succeeded()) {
+                        startPromise.complete();
+                    } else {
+                        startPromise.fail(ar.cause());
+                    }
+                }))
+            .onFailure(startPromise::fail);
     }
 
     @Override
